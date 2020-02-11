@@ -5,12 +5,18 @@
     <th>Name</th>
     <th>Duration</th>
     <th>Fee</th>
+    <th></th>
     {{#each docs}}
     <tr>
       <td>{{this.courseId}}</td>
       <td>{{this.courseName}}</td>
       <td>{{this.courseDuration}}</td>
       <td>{{this.courseFee}}</td>
+      <td>
+        <form action="/course/delete/{{this._id}}" method="post">
+          <button type="submit">delete</button>
+        </form>
+      </td>
     </tr>
     {{/each}}
   </tr>

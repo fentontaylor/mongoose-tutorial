@@ -30,4 +30,16 @@ router.post('/add', (req, res) => {
   })
 });
 
+router.post('/delete/:id', (req, res) => {
+  CourseModel.findByIdAndDelete({
+    _id: req.params.id
+  }, (err => {
+    if (!err) {
+      res.redirect('/course/list')
+    } else {
+      console.log("There was an error while deleting.")
+    }
+  }))
+})
+
 module.exports = router;
