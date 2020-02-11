@@ -1,0 +1,22 @@
+<h1>Courses</h1>
+
+{{#each docs}}
+  <p>{{@index}}. {{this}}</p>
+{{/each}}
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Duration</th>
+    <th>Fee</th>
+    {{#each docs}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.duration}}</td>
+      <td>{{this.fee}}</td>
+    </tr>
+    {{/each}}
+  </tr>
+</table>
