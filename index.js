@@ -1,13 +1,29 @@
-const mongoose = require('mongoose');
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}
+const connection = require('./models');
+const express = require('express');
+const app = express();
+const path = require('path');
+const expressHandlebars = require('express-handlebars');
+const bodyparser = require('body-parser');
 
-mongoose.connect('mongodb://localhost:27017/Edureka', options, (error) => {
-  if (!error) {
-    console.log('Database connection successful')
-  } else {
-    console.log(`Error connecting to database: ${error}`)
-  }
-})
+app.use(bodyparser.urlencoded({
+  extended: true
+}));
+
+app.set('views', path.join(__dirname, 'views'));
+
+app.engine('hbs', expressHandlebars({
+  extname: 'hbs',
+  defaultLayout: 'mainlayout',
+  layoutsDir: __dirname + '/views/layouts'
+}));
+
+app.set('view engine', 'hbs');
+
+app.get('/', (req, res) => {
+  // res.send('<h1>Hello World!</h1>')
+  res.render('index', {});
+});
+
+app.listen("3000", () => {
+  console.log('Server started')
+});
